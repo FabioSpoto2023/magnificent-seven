@@ -1,14 +1,14 @@
 <template>
 
     <main>
-        <BaseCard class="card-main">
-            <BaseCard class="card-inner" id="card-first"></BaseCard>
+        <BaseCard id="card-main">
             <BaseCard class="card-inner"></BaseCard>
             <BaseCard class="card-inner"></BaseCard>
             <BaseCard class="card-inner"></BaseCard>
             <BaseCard class="card-inner"></BaseCard>
             <BaseCard class="card-inner"></BaseCard>
-            <BaseCard class="card-inner" id="card-last"></BaseCard>
+            <BaseCard class="card-inner"></BaseCard>
+            <BaseCard class="card-inner"></BaseCard>
         </BaseCard>
         <ButtonScrollRight id="button-right" v-show="buttonSwitchRightVisible" @click="toggleButtonScroll()">
         </ButtonScrollRight>
@@ -41,6 +41,12 @@ export default {
         toggleButtonScroll() {
             this.buttonSwitchRightVisible = !this.buttonSwitchRightVisible;
             this.buttonSwitchLeftVisible = !this.buttonSwitchLeftVisible;
+
+            if (this.buttonSwitchLeftVisible) {
+                document.getElementById('card-main').scrollTo(1000, 0);
+            } else {
+                document.getElementById('card-main').scrollTo(0, 0);
+            }
         }
     }
 }
@@ -53,7 +59,7 @@ main {
     position: relative;
 }
 
-.card-main {
+#card-main {
     display: flex;
     gap: 24px;
     overflow-x: hidden;

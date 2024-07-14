@@ -1,6 +1,6 @@
 <template>
 
-    <a href="#card-last" class="button">
+    <a class="button">
         <img src="../assets/icon/arrow_right.svg">
     </a>
 
