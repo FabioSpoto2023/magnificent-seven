@@ -6,7 +6,7 @@
   </header>
 
   <main>
-    <CurrentRevenueWidgets></CurrentRevenueWidgets>
+    <CurrentRevenueWidgets :stockData="currentRevenueWidgetData"></CurrentRevenueWidgets>
     <div class="column-2">
       <RevenueLastThreeYears></RevenueLastThreeYears>
       <RevenueBreakdown></RevenueBreakdown>
@@ -28,6 +28,7 @@ import RevenueBreakdown from './components/RevenueBreakdown.vue';
 import GrossMargin from './components/GrossMargin.vue';
 import NetIncome from './components/NetIncome.vue';
 import RevenueGrowth from './components/RevenueGrowth.vue';
+import stockService from './services/stockService';
 
 export default {
   name: 'App',
@@ -38,6 +39,33 @@ export default {
     GrossMargin,
     NetIncome,
     RevenueGrowth
+  },
+  async created() {
+    this.stockData = await stockService.getData();
+  },
+  data() {
+    return {
+      stockData: [],
+      currentRevenueWidgetData: [
+        {
+          'company': 'Apple',
+          'quarterly': 'Revenue Q1 2024',
+          'revenue': this.getRevenueWidget(),
+          'net_profit': '+1.06',
+          'gross_margin': '2.83',
+          'img_logo': require('@/assets/icon/apple.svg'),
+          'img_arrow': require('@/assets/icon/arrow_positive.svg'),
+          'img_percent': require('@/assets/icon/percent_positive.svg')
+        }
+      ]
+    };
+  },
+  getRevenueWidget() {
+
+    for (let i = 0; i < this.stockData.length; i++) {
+      let data = this.stockData[i];
+      console.log(data)
+    }
   }
 }
 </script>
@@ -105,5 +133,4 @@ main {
   gap: 24px;
   height: 296px;
 }
-
 </style>

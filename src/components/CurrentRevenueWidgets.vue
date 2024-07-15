@@ -47,22 +47,16 @@ export default {
         ButtonScrollRight,
         ButtonScrollLeft
     },
+    props: {
+        stockData: {
+            type: Array,
+            required: true
+        }
+    },
     data() {
         return {
             buttonSwitchRightVisible: true,
-            buttonSwitchLeftVisible: false,
-            stockData: [
-                {
-                    'company': 'Apple',
-                    'quarterly': 'Revenue Q1 2024',
-                    'revenue': '38.52',
-                    'net_profit': '+1.06',
-                    'gross_margin': '2.83',
-                    'img_logo': require('@/assets/icon/apple.svg'),
-                    'img_arrow': require('@/assets/icon/arrow_positive.svg'),
-                    'img_percent': require('@/assets/icon/percent_positive.svg')
-                }
-            ]
+            buttonSwitchLeftVisible: false
         }
     },
     methods: {
